@@ -1,0 +1,10 @@
+{
+    "domains": {
+        "localhost": {
+            "status": "active"
+        },
+        "google.com": {
+            "status": "expired"
+        }
+    }
+}
