@@ -10,6 +10,6 @@ Tema veya eklentinizde bir ```license.php``` dosyası oluşturun ve içerisine [
 Daha sonra ```functions.php``` dosyasına aşağıdaki kodu ekleyin.
 
 ```
-require_once(get_template_directory() . '/license.php');
+require(get_template_directory() . '/license.php');
 $licensing = new Kan_Licensing_System;
 ```
