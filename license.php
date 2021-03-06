@@ -4,17 +4,15 @@
  * @author Cagri Uckan
  * @package WordPress
  **/
-// update_option('kan_license_data', '');
+ 
 class Kan_Licensing_System {
 	
-	private $_server = 'http://localhost/wordpress/server.json'; // lisans serverı
+	private $_server;
 	private $_option = 'kan_license_data'; // lisans datasının kaydedileceği tablo adı
 	
-	function __construct() {
-		$this->init();
-	}
-	
-	private function init() {
+	public  function __construct($server) {
+		$this->_server = $server;
+		
 		add_action('init', array($this, 'result')); // tüm siteyi patlatır
 		// add_action('admin_init', array($this, 'result')); // sadece admin panelini patlatır
 		
@@ -24,6 +22,7 @@ class Kan_Licensing_System {
 		if ( !wp_next_scheduled( 'kan_license_job' ) ) {
 			wp_schedule_event( time(), 'weekly', 'kan_license_job' ); // haftalık olarak tekrarlanan bir görev oluşturur
 		}
+		
 	}
 	
 	/*
