@@ -7,9 +7,24 @@ Uzak bir sunucuda tutulan json dosyası içerisinde lisanslı domainlerin bilgis
 ## Kurulum
 Tema veya eklentinizde bir ```license.php``` dosyası oluşturun ve içerisine [wp-lisans-sistemi/license.php](https://github.com/cagriuckan/wp-lisans-sistemi/blob/main/license.php) sayfasındaki kodları ekleyin.
 
-Daha sonra ```functions.php``` dosyasına aşağıdaki kodu ekleyin.
-
+Uzak sunucuda  ```server.json``` dosyası oluşturun, örnek datayı aşağıda görüntüleyebilirsiniz. Geçerli status değişkeni olarak ```active,deactive ve expired``` kullanabilirsiniz.
 ```
-require(get_template_directory() . '/license.php');
-$licensing = new Kan_Licensing_System;
+{
+    "domains": {
+        "localhost": {
+            "status": "active"
+        },
+        "google.com": {
+            "status": "expired"
+        }
+    }
+}
+```
+
+Daha sonra ```functions.php``` dosyasına aşağıdaki kodu ekleyin ve link kısmına uzak sunucu linkinizi ekleyin.
+```
+require get_template_directory() . '/license.php';
+$licensing = new Kan_Licensing_System(
+	'http://localhost/wordpress/server.json'
+);
 ```
